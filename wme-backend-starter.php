@@ -93,16 +93,30 @@ class WME_Backend_Starter {
 	 * @see $this->action__admin_menu()
 	 * 
 	 * @return void
-	 * 
-	 * @todo add div for React to bind to
-	 * @todo add function to inject JSON payload for React app config and data
 	 */
 	public function callback__add_menu_page(): void {
 		if ( sprintf( 'toplevel_page_%s', self::MENU_SLUG ) !== current_action() ) {
 			return;
 		}
 
+		wp_enqueue_script(    'wme-backend-starter', 'wme-framework.js' );
+		wp_add_inline_script( 'wme-backend-starter', sprintf( 'window.WME.data = %s', wp_json_encode( $this->get_json_payload() ) ), 'before' );
+		?>
+
+		<div id="wme-framework-react" data-js="wme-framework-react"></div>
 		
+		<?php
+	}
+
+	/**
+	 * Get JSON payload for React app config and data.
+	 * 
+	 * @return array
+	 * 
+	 * @todo define; likely retrieve from WP option
+	 */
+	protected function get_json_payload(): array {
+		return array();
 	}
 
 	/**
