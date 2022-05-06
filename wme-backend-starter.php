@@ -58,7 +58,7 @@ class WME_Backend_Starter {
 	 */
 	protected function register_hooks(): void {
 
-		add_action( 'admin_menu', array( $this, 'action__admin_menu' ) );
+		add_action( 'admin_menu',    array( $this, 'action__admin_menu' ) );
 		add_action( 'rest_api_init', array( $this, 'action__rest_api_init' ) );
 
 	}
@@ -87,11 +87,15 @@ class WME_Backend_Starter {
 	/**
 	 * Callback: add_menu_page()
 	 * 
+	 * @link https://github.com/liquidweb/nexcess-mapps/blob/develop/nexcess-mapps/Integrations/StoreBuilder/Setup.php JSON payloads for React app
+	 * @link https://github.com/liquidweb/nexcess-mapps/blob/develop/nexcess-mapps/templates/storebuilderapp-setup.php template with div for React app binding
+	 * 
 	 * @see $this->action__admin_menu()
 	 * 
 	 * @return void
 	 * 
 	 * @todo add div for React to bind to
+	 * @todo add function to inject JSON payload for React app config and data
 	 */
 	public function callback__add_menu_page(): void {
 		if ( sprintf( 'toplevel_page_%s', self::MENU_SLUG ) !== current_action() ) {
