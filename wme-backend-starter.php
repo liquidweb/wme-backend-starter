@@ -11,6 +11,11 @@
 class WME_Backend_Starter {
 
 	/**
+	 * @var string Namespace for REST endpoints.
+	 */
+	public const REST_NAMESPACE = 'wme-backend-starter';
+
+	/**
 	 * @var string Required capability for admin menu page.
 	 */
 	public const MENU_CAPABILITY = 'manage_options';
@@ -54,6 +59,7 @@ class WME_Backend_Starter {
 	protected function register_hooks(): void {
 
 		add_action( 'admin_menu', array( $this, 'action__admin_menu' ) );
+		add_action( 'rest_api_init', array( $this, 'action__rest_api_init' ) );
 
 	}
 
@@ -93,6 +99,31 @@ class WME_Backend_Starter {
 		}
 
 		
+	}
+
+	/**
+	 * Action: rest_api_init
+	 * 
+	 * Register REST routes for framework.
+	 * 
+	 * @return void
+	 */
+	public function action__rest_api_init(): void {
+		register_rest_route( self::REST_NAMESPACE, '/state', array(
+			array(
+				'methods'  => WP_REST_Server::READABLE,
+				'callback' => array( $this, 'callback__rest_state_get' ),
+			),
+			array(
+				'methods'  => WP_REST_Server::CREATABLE,
+				'callback' => array( $this, 'callback__rest_state_post' ),
+			),
+		) );
+
+		register_rest_route( self::REST_NAMESPACE, '/final', array(
+			'methods' => WP_REST_Server::CREATABLE,
+			'callback' => array( $this, 'callback__rest_final_post' ),
+		) );
 	}
 
 }
