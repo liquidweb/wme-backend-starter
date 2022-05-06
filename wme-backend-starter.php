@@ -104,24 +104,13 @@ class WME_Backend_Starter {
 	/**
 	 * Action: rest_api_init
 	 * 
-	 * Register REST routes for framework.
+	 * Register REST route for wizard processing.
 	 * 
 	 * @return void
 	 */
 	public function action__rest_api_init(): void {
-		register_rest_route( self::REST_NAMESPACE, '/state', array(
-			array(
-				'methods'  => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'callback__rest_state_get' ),
-			),
-			array(
-				'methods'  => WP_REST_Server::CREATABLE,
-				'callback' => array( $this, 'callback__rest_state_post' ),
-			),
-		) );
-
 		register_rest_route( self::REST_NAMESPACE, '/final', array(
-			'methods' => WP_REST_Server::CREATABLE,
+			'methods'  => WP_REST_Server::CREATABLE,
 			'callback' => array( $this, 'callback__rest_final_post' ),
 		) );
 	}
