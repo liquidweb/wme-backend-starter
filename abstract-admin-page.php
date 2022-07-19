@@ -1,13 +1,35 @@
-<?php
+<?php declare( strict_types=1 );
 
 abstract class WME_Sparkplug_Admin_Page {
 
+	/**
+	 * @var string
+	 */
 	protected $page_title;
+
+	/**
+	 * @var string
+	 */
 	protected $menu_title;
+
+	/**
+	 * @var string
+	 */
 	protected $capability;
+
+	/**
+	 * @var string
+	 */
 	protected $menu_slug;
-	protected $callback = '';
+
+	/**
+	 * @var string
+	 */
 	protected $icon_url = '';
+
+	/**
+	 * @var null|int|float
+	 */
 	protected $position = null;
 
 	/**
@@ -88,7 +110,6 @@ abstract class WME_Sparkplug_Admin_Page {
 	 * @return void
 	 */
 	public function action__admin_print_scripts(): void {
-		do_action( sprintf( '%s/print_config',  $this->menu_slug ) );
 		do_action( sprintf( '%s/print_scripts', $this->menu_slug ) );
 	}
 
