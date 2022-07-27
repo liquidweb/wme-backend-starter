@@ -29,6 +29,13 @@ abstract class WME_Sparkplug_Wizard {
 	abstract public function finish(): void;
 
 	/**
+	 * Construct.
+	 */
+	public function __construct() {
+		$this->register_hooks();
+	}
+
+	/**
 	 * Register hooks.
 	 *
 	 * @return void
@@ -77,7 +84,7 @@ abstract class WME_Sparkplug_Wizard {
 		$wizard_slug = json_encode( ( string ) $this->wizard_slug );
 		$props       = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window["wizards"][%s] = %s</script>%s', $wizard_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["wizards"][%s] = %s</script>%s', json_encode( $this->admin_page_slug ), $wizard_slug, $props, PHP_EOL );
 	}
 
 }

@@ -59,15 +59,15 @@ abstract class WME_Sparkplug_Card {
 
 		if ( ! empty( $this->card_ajax_action ) ) {
 			$default_props['ajax'] = [
-				'url'   => add_query_arg( 'action', $this->card_ajax_action, admin_url( 'admin-ajax.php' ) ),
-				'nonce' => wp_create_nonce( $this->card_ajax_action ),
+				'url'   => add_query_arg( 'action', $this->ajax_action, admin_url( 'admin-ajax.php' ) ),
+				'nonce' => wp_create_nonce( $this->ajax_action ),
 			];
 		}
 
 		$card_slug = json_encode( ( string ) $this->card_slug );
 		$props     = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window["wizards"][%s] = %s</script>%s', $card_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["cards"][%s] = %s</script>%s', json_encode( $this->admin_page_slug ), $card_slug, $props, PHP_EOL );
 	}
 
 
