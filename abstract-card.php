@@ -35,7 +35,7 @@ abstract class WME_Sparkplug_Card {
 			return;
 		}
 
-		$hook = sprintf( 'wp_ajax_%s', $this->card_ajax_action );
+		$hook = sprintf( 'wp_ajax_%s', $this->ajax_action );
 		add_action( $hook, [ $this, 'action__wp_ajax' ] );
 
 	}

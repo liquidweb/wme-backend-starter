@@ -33,6 +33,13 @@ abstract class WME_Sparkplug_Admin_Page {
 	protected $position = null;
 
 	/**
+	 * Construct.
+	 */
+	public function __construct() {
+		$this->register_hooks();
+	}
+
+	/**
 	 * Register hooks.
 	 *
 	 * @return void
