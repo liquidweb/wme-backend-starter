@@ -45,13 +45,9 @@ abstract class WME_Sparkplug_Wizard {
 		$hook = sprintf( '%s/print_scripts', $this->admin_page_slug );
 		add_action( $hook, [ $this, 'action__print_scripts' ] );
 
-		if ( ! method_exists( $this, 'supports_ajax' ) || ! $this->supports_ajax() ) {
-			trigger_error( 'Page slug, AJAX action, and Uses_Ajax trait is required for wizard.', E_USER_WARNING );
+		if ( ! $this->maybe_register_ajax_action() ) {
 			return;
 		}
-
-		$hook = sprintf( 'wp_ajax_%s', $this->ajax_action );
-		add_action( $hook, [ $this, 'action__wp_ajax' ] );
 
 		$this->add_ajax_action( 'finish', [ $this, 'finish' ] );
 
@@ -74,11 +70,8 @@ abstract class WME_Sparkplug_Wizard {
 			return;
 		}
 
-		if ( ! empty( $this->ajax_action ) ) {
-			$default_props['ajax'] = [
-				'url'   => add_query_arg( 'action', $this->ajax_action, admin_url( 'admin-ajax.php' ) ),
-				'nonce' => wp_create_nonce( $this->ajax_action ),
-			];
+		if ( $this->supports_ajax() ) {
+			$default_props['ajax'] = $this->ajax_props();
 		}
 
 		$wizard_slug = json_encode( ( string ) $this->wizard_slug );

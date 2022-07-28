@@ -7,8 +7,44 @@ trait WME_Sparkplug_Uses_Ajax {
 	 */
 	protected $ajax_action;
 
+	/**
+	 * Check if class supports AJAX.
+	 *
+	 * @return bool
+	 */
 	protected function supports_ajax(): bool {
 		return ! empty( $this->admin_page_slug ) && ! empty( $this->ajax_action );
+	}
+
+	/**
+	 * Maybe register AJAX action.
+	 *
+	 * @uses $this->supports_ajax()
+	 *
+	 * @return bool
+	 */
+	protected function maybe_register_ajax_action(): bool {
+		if ( ! $this->supports_ajax() ) {
+			return false;
+		}
+
+		$hook = sprintf( 'wp_ajax_%s', $this->ajax_action );
+		add_action( $hook, [ $this, 'action__wp_ajax' ] );
+
+		return true;
+	}
+
+	/**
+	 * Return properties for AJAX access.
+	 *
+	 * @return array
+	 */
+	protected function ajax_props(): array {
+		return [
+			'url'    => add_query_arg( 'action', $this->ajax_action, admin_url( 'admin-ajax.php' ) ),
+			'nonce'  => wp_create_nonce( $this->ajax_action ),
+			'action' => $this->ajax_action,
+		];
 	}
 
 	/**

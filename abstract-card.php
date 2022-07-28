@@ -31,12 +31,7 @@ abstract class WME_Sparkplug_Card {
 		$hook = sprintf( '%s/print_scripts', $this->admin_page_slug );
 		add_action( $hook, [ $this, 'action__print_scripts' ] );
 
-		if ( ! method_exists( $this, 'supports_ajax' ) || ! $this->supports_ajax() ) {
-			return;
-		}
-
-		$hook = sprintf( 'wp_ajax_%s', $this->ajax_action );
-		add_action( $hook, [ $this, 'action__wp_ajax' ] );
+		$this->maybe_register_ajax_action();
 
 	}
 
@@ -57,11 +52,8 @@ abstract class WME_Sparkplug_Card {
 			return;
 		}
 
-		if ( ! empty( $this->card_ajax_action ) ) {
-			$default_props['ajax'] = [
-				'url'   => add_query_arg( 'action', $this->ajax_action, admin_url( 'admin-ajax.php' ) ),
-				'nonce' => wp_create_nonce( $this->ajax_action ),
-			];
+		if ( $this->supports_ajax() ) {
+			$default_props['ajax'] = $this->ajax_props();
 		}
 
 		$card_slug = json_encode( ( string ) $this->card_slug );
