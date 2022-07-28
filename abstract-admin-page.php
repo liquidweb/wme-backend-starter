@@ -117,6 +117,7 @@ abstract class WME_Sparkplug_Admin_Page {
 	 * @return void
 	 */
 	public function action__admin_print_scripts(): void {
+		printf( '<script>window[%1$s] = window[%1$s] || {"cards":{},"wizards":{}}</script>%2$s', json_encode( str_replace( '-', '_', ( string ) $this->menu_slug ) ), PHP_EOL );
 		do_action( sprintf( '%s/print_scripts', $this->menu_slug ) );
 	}
 

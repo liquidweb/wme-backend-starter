@@ -74,10 +74,11 @@ abstract class WME_Sparkplug_Wizard {
 			$default_props['ajax'] = $this->ajax_props();
 		}
 
-		$wizard_slug = json_encode( ( string ) $this->wizard_slug );
+		$admin_slug  = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
+		$wizard_slug = json_encode( str_replace( '-', '_', ( string ) $this->wizard_slug ) );
 		$props       = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window[%s]["wizards"][%s] = %s</script>%s', json_encode( $this->admin_page_slug ), $wizard_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["wizards"][%s] = %s</script>%s', $admin_slug, $wizard_slug, $props, PHP_EOL );
 	}
 
 }

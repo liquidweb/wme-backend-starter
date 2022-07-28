@@ -22,6 +22,13 @@ abstract class WME_Sparkplug_Card {
 	abstract public function props(): array;
 
 	/**
+	 * Construct.
+	 */
+	public function __construct() {
+		$this->register_hooks();
+	}
+
+	/**
 	 * Register hooks.
 	 *
 	 * @return void
@@ -56,10 +63,11 @@ abstract class WME_Sparkplug_Card {
 			$default_props['ajax'] = $this->ajax_props();
 		}
 
-		$card_slug = json_encode( ( string ) $this->card_slug );
-		$props     = json_encode( wp_parse_args( $props, $default_props ) );
+		$admin_slug = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
+		$card_slug  = json_encode( str_replace( '-', '_', ( string ) $this->card_slug ) );
+		$props      = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window[%s]["cards"][%s] = %s</script>%s', json_encode( $this->admin_page_slug ), $card_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["cards"][%s] = %s</script>%s', $admin_slug, $card_slug, $props, PHP_EOL );
 	}
 
 
