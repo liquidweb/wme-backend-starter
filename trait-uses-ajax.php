@@ -55,7 +55,7 @@ trait WME_Sparkplug_Uses_Ajax {
 	 *
 	 * @return void
 	 */
-	public function add_ajax_action( string $registered_sub_action, callable $callback ): void {
+	public function add_ajax_action( string $registered_sub_action, callable $callback ) {
 		if ( ! $this->supports_ajax() ) {
 			trigger_error( 'AJAX action cannot be added: <code>ajax_action</code> property is undefined.', E_USER_WARNING );
 			return;
@@ -79,7 +79,7 @@ trait WME_Sparkplug_Uses_Ajax {
 	 *
 	 * @return void
 	 */
-	public function action__wp_ajax(): void {
+	public function action__wp_ajax() {
 		$sub_action = '';
 
 		if ( ! empty( $_GET['sub_action'] ) ) {
