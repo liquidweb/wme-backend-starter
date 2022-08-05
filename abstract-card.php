@@ -33,7 +33,7 @@ abstract class WME_Sparkplug_Card {
 	 *
 	 * @return void
 	 */
-	public function register_hooks(): void {
+	public function register_hooks() {
 
 		$hook = sprintf( '%s/print_scripts', $this->admin_page_slug );
 		add_action( $hook, [ $this, 'action__print_scripts' ] );
@@ -51,7 +51,7 @@ abstract class WME_Sparkplug_Card {
 	 *
 	 * @return void
 	 */
-	public function action__print_scripts(): void {
+	public function action__print_scripts() {
 		$props         = ( array ) $this->props();
 		$default_props = [];
 
