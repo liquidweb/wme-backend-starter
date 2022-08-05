@@ -44,7 +44,7 @@ abstract class WME_Sparkplug_Admin_Page {
 	 *
 	 * @return void
 	 */
-	public function register_hooks(): void {
+	public function register_hooks() {
 
 		add_action( 'admin_menu', [ $this, 'action__admin_menu' ] );
 
@@ -76,7 +76,7 @@ abstract class WME_Sparkplug_Admin_Page {
 	 *
 	 * @return void
 	 */
-	public function action__admin_menu(): void {
+	public function action__admin_menu() {
 		if ( 'admin_menu' !== current_action() ) {
 			return;
 		}
@@ -94,7 +94,7 @@ abstract class WME_Sparkplug_Admin_Page {
 	 *
 	 * @return void
 	 */
-	public function callback__menu_page(): void {
+	public function callback__menu_page() {
 		printf( '<div id="%1$s-react" data-js="%1$s"></div>', esc_attr( $this->menu_slug ) );
 	}
 
@@ -105,7 +105,7 @@ abstract class WME_Sparkplug_Admin_Page {
 	 *
 	 * @return void
 	 */
-	public function action__admin_print_styles(): void {
+	public function action__admin_print_styles() {
 		do_action( sprintf( '%s/print_styles', $this->menu_slug ) );
 	}
 
@@ -116,7 +116,7 @@ abstract class WME_Sparkplug_Admin_Page {
 	 *
 	 * @return void
 	 */
-	public function action__admin_print_scripts(): void {
+	public function action__admin_print_scripts() {
 		printf( '<script>window[%1$s] = window[%1$s] || {"cards":{},"wizards":{}}</script>%2$s', json_encode( str_replace( '-', '_', ( string ) $this->menu_slug ) ), PHP_EOL );
 		do_action( sprintf( '%s/print_scripts', $this->menu_slug ) );
 	}
