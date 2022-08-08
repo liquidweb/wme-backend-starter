@@ -8,8 +8,10 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {},
-	"preferred-install": {
+    "preferred-install": {
 		"*": "dist"
-	  }
+	  },
+    "require-dev": {
+        "moderntribe/coding-standards": "^2.0"
+    }
 }
