@@ -1,0 +1,12 @@
+{
+    "name": "tribe/wme-backend-starter",
+    "type": "library",
+    "license": "GPL-2.0-only",
+    "autoload": {
+        "psr-4": {
+            "Tribe\\WmeBackendStarter\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
