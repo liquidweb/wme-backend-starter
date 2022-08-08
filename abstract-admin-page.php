@@ -83,8 +83,8 @@ abstract class WME_Sparkplug_Admin_Page {
 
 		$slug = $this->register_menu_page();
 
-		add_action( 'admin_print_styles-'  . $slug, [ $this, 'action__admin_print_styles'  ] );
-		add_action( 'admin_print_scripts-' . $slug, [ $this, 'action__admin_print_scripts' ] );
+		add_action( 'admin_print_styles-'         . $slug, [ $this, 'action__admin_print_styles'  ] );
+		add_action( 'admin_print_footer_scripts-' . $slug, [ $this, 'action__admin_print_footer_scripts' ] );
 	}
 
 	/**
@@ -110,14 +110,14 @@ abstract class WME_Sparkplug_Admin_Page {
 	}
 
 	/**
-	 * Action: admin_print_scripts_{$page_slug}
+	 * Action: admin_print_footer_scripts{$page_slug}
 	 *
-	 * Print or enqueue scripts for the admin page.
+	 * Print or enqueue scripts for the admin page in the footer.
 	 *
 	 * @return void
 	 */
-	public function action__admin_print_scripts() {
-		printf( '<script>window[%1$s] = window[%1$s] || {"cards":{},"wizards":{}}</script>%2$s', json_encode( str_replace( '-', '_', ( string ) $this->menu_slug ) ), PHP_EOL );
+	public function action__admin_print_footer_scripts(): void {
+		printf( '<script>window[%1$s] = window[%1$s] || {"cards":[],"wizards":[]}</script>%2$s', json_encode( str_replace( '-', '_', ( string ) $this->menu_slug ) ), PHP_EOL );
 		do_action( sprintf( '%s/print_scripts', $this->menu_slug ) );
 	}
 

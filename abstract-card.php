@@ -64,12 +64,9 @@ abstract class WME_Sparkplug_Card {
 		}
 
 		$admin_slug = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
-		$card_slug  = json_encode( str_replace( '-', '_', ( string ) $this->card_slug ) );
 		$props      = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window[%s]["cards"][%s] = %s</script>%s', $admin_slug, $card_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["cards"].push( %s )</script>%s', $admin_slug, $props, PHP_EOL );
 	}
-
-
 
 }
