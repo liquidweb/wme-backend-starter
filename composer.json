@@ -1,5 +1,5 @@
 {
-    "name": "tribe/wmebackendstarter",
+    "name": "moderntribe/wme-backend-starter",
     "type": "library",
     "license": "GPL-2.0-only",
     "autoload": {
