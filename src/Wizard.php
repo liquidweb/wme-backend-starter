@@ -66,7 +66,9 @@ abstract class Wizard {
 	 */
 	public function action__print_scripts() {
 		$props         = ( array ) $this->props();
-		$default_props = [];
+		$default_props = [
+			'slug' => $this->wizard_slug,
+		];
 
 		if ( empty( $props ) ) {
 			return;

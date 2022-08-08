@@ -25,6 +25,7 @@ new Example_Card;
 
 ```js
 window['example']['cards'][0] === {
+  "slug": "example-card-1",
   "foo": "bar"
 }
 ```
@@ -55,6 +56,7 @@ new Example_Card;
 
 ```js
 window['example']['cards'][0] === {
+  "slug": "example-card-2",
   "bar": "foo",
   "ajax": {
     "nonce": "wpnonce",
