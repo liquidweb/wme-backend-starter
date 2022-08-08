@@ -1,8 +1,10 @@
 <?php declare( strict_types=1 );
 
-abstract class WME_Sparkplug_Wizard {
+namespace Tribe\WmeBackendStarter;
 
-	use WME_Sparkplug_Uses_Ajax;
+abstract class Card {
+
+	use Uses_Ajax;
 
 	/**
 	 * @var string
@@ -12,21 +14,14 @@ abstract class WME_Sparkplug_Wizard {
 	/**
 	 * @var string
 	 */
-	protected $wizard_slug;
+	protected $card_slug;
 
 	/**
-	 * Properties for wizard.
+	 * Properties for card.
 	 *
 	 * @return array
 	 */
 	abstract public function props(): array;
-
-	/**
-	 * AJAX action for finishing wizard.
-	 *
-	 * @return void
-	 */
-	abstract public function finish();
 
 	/**
 	 * Construct.
@@ -45,18 +40,14 @@ abstract class WME_Sparkplug_Wizard {
 		$hook = sprintf( '%s/print_scripts', $this->admin_page_slug );
 		add_action( $hook, [ $this, 'action__print_scripts' ] );
 
-		if ( ! $this->maybe_register_ajax_action() ) {
-			return;
-		}
-
-		$this->add_ajax_action( 'finish', [ $this, 'finish' ] );
+		$this->maybe_register_ajax_action();
 
 	}
 
 	/**
-	 * Action: {$admin_page_slug}/print_scripts
+	 * Action: {$this->admin_page_slug}/print_scripts
 	 *
-	 * Print wizard properties to admin page.
+	 * Print card properties to admin page.
 	 *
 	 * @uses $this->props()
 	 *
@@ -74,10 +65,10 @@ abstract class WME_Sparkplug_Wizard {
 			$default_props['ajax'] = $this->ajax_props();
 		}
 
-		$admin_slug  = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
-		$props       = json_encode( wp_parse_args( $props, $default_props ) );
+		$admin_slug = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
+		$props      = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window[%s]["wizards"].push( %s )</script>%s', $admin_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["cards"].push( %s )</script>%s', $admin_slug, $props, PHP_EOL );
 	}
 
 }

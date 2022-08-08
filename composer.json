@@ -1,0 +1,17 @@
+{
+    "name": "moderntribe/wme-backend-starter",
+    "type": "library",
+    "license": "GPL-2.0-only",
+    "autoload": {
+        "psr-4": {
+            "Tribe\\WmeBackendStarter\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "preferred-install": {
+		"*": "dist"
+	  },
+    "require-dev": {
+        "moderntribe/coding-standards": "^2.0"
+    }
+}

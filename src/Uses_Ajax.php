@@ -1,6 +1,8 @@
 <?php declare( strict_types=1 );
 
-trait WME_Sparkplug_Uses_Ajax {
+namespace Tribe\WmeBackendStarter;
+
+trait Uses_Ajax {
 
 	/**
 	 * @var string
