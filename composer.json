@@ -8,5 +8,8 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+	"preferred-install": {
+		"*": "dist"
+	  }
 }
