@@ -1,6 +1,8 @@
 <?php declare( strict_types=1 );
 
-abstract class WME_Sparkplug_Admin_Page {
+namespace Tribe\WmeBackendStarter;
+
+abstract class Admin_Page {
 
 	/**
 	 * @var string

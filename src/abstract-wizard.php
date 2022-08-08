@@ -1,8 +1,10 @@
 <?php declare( strict_types=1 );
 
-abstract class WME_Sparkplug_Wizard {
+namespace Tribe\WmeBackendStarter;
 
-	use WME_Sparkplug_Uses_Ajax;
+abstract class Wizard {
+
+	use Uses_Ajax;
 
 	/**
 	 * @var string
