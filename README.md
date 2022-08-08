@@ -2,7 +2,7 @@
 
 ## Configuration
 
-If a Card or Wizard class returns a populated array in the `props()` method, the data will be available in the `window[{admin page slug}]["cards"][{card slug}]` or `window[{admin page slug}]["wizards"][{ wizard slug }]` property.
+If a Card or Wizard class returns a populated array in the `props()` method, the data will be available in the `window[{admin page slug}]["cards"]` or `window[{admin page slug}]["wizards"]` property.
 
 ### Example
 
@@ -24,7 +24,7 @@ new Example_Card;
 ```
 
 ```js
-window['example']['cards']['example-card-1'] === {
+window['example']['cards'][0] === {
   "foo": "bar"
 }
 ```
@@ -54,7 +54,7 @@ new Example_Card;
 ```
 
 ```js
-window['example']['cards']['example-card-2'] === {
+window['example']['cards'][0] === {
   "bar": "foo",
   "ajax": {
     "nonce": "wpnonce",
