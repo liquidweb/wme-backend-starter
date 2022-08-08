@@ -1,4 +1,4 @@
-<?php declare( strict_types=1 );
+<?php declare(strict_types=1);
 
 namespace Tribe\WmeBackendStarter;
 
@@ -12,7 +12,7 @@ abstract class Card {
 	protected $admin_page_slug;
 
 	/**
-	 * @var string
+	 * @var string $card_slug
 	 */
 	protected $card_slug;
 
@@ -36,12 +36,10 @@ abstract class Card {
 	 * @return void
 	 */
 	public function register_hooks() {
-
 		$hook = sprintf( '%s/print_scripts', $this->admin_page_slug );
 		add_action( $hook, [ $this, 'action__print_scripts' ] );
 
 		$this->maybe_register_ajax_action();
-
 	}
 
 	/**
