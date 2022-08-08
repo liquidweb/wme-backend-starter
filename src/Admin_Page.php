@@ -1,4 +1,4 @@
-<?php declare( strict_types=1 );
+<?php declare(strict_types=1);
 
 namespace Tribe\WmeBackendStarter;
 
@@ -47,26 +47,7 @@ abstract class Admin_Page {
 	 * @return void
 	 */
 	public function register_hooks() {
-
 		add_action( 'admin_menu', [ $this, 'action__admin_menu' ] );
-
-	}
-
-	/**
-	 * Register admin menu page.
-	 *
-	 * @return false|string
-	 */
-	protected function register_menu_page() {
-		return add_menu_page(
-			$this->page_title,
-			$this->menu_title,
-			$this->capability,
-			$this->menu_slug,
-			[ $this, 'callback__menu_page' ],
-			$this->icon_url,
-			$this->position
-		);
 	}
 
 	/**
@@ -85,7 +66,7 @@ abstract class Admin_Page {
 
 		$slug = $this->register_menu_page();
 
-		add_action( 'admin_print_styles-'         . $slug, [ $this, 'action__admin_print_styles'  ] );
+		add_action( 'admin_print_styles-'         . $slug, [ $this, 'action__admin_print_styles' ] );
 		add_action( 'admin_print_footer_scripts-' . $slug, [ $this, 'action__admin_print_footer_scripts' ] );
 	}
 
@@ -121,6 +102,23 @@ abstract class Admin_Page {
 	public function action__admin_print_footer_scripts(): void {
 		printf( '<script>window[%1$s] = window[%1$s] || {"cards":[],"wizards":[]}</script>%2$s', json_encode( str_replace( '-', '_', ( string ) $this->menu_slug ) ), PHP_EOL );
 		do_action( sprintf( '%s/print_scripts', $this->menu_slug ) );
+	}
+
+	/**
+	 * Register admin menu page.
+	 *
+	 * @return false|string
+	 */
+	protected function register_menu_page() {
+		return add_menu_page(
+			$this->page_title,
+			$this->menu_title,
+			$this->capability,
+			$this->menu_slug,
+			[ $this, 'callback__menu_page' ],
+			$this->icon_url,
+			$this->position
+		);
 	}
 
 }
