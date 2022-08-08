@@ -58,7 +58,8 @@ window['example']['cards'][0] === {
   "bar": "foo",
   "ajax": {
     "nonce": "wpnonce",
-    "url": "https://example.com/wp-admin/admin-ajax.php?action=example-card-2-ajax"
+    "url": "https://example.com/wp-admin/admin-ajax.php?action=example-card-2-ajax",
+    "action": "example-card-2-ajax"
   }
 }
 ```
