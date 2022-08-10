@@ -76,10 +76,11 @@ abstract class Wizard {
 			$default_props['ajax'] = $this->ajax_props();
 		}
 
-		$admin_slug = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
-		$props      = json_encode( wp_parse_args( $props, $default_props ) );
+		$admin_slug  = json_encode( str_replace( '-', '_', ( string ) $this->admin_page_slug ) );
+		$wizard_slug = json_encode( str_replace( '-', '_', ( string ) $this->wizard_slug ) );
+		$props       = json_encode( wp_parse_args( $props, $default_props ) );
 
-		printf( '<script>window[%s]["wizards"].push( %s )</script>%s', $admin_slug, $props, PHP_EOL );
+		printf( '<script>window[%s]["wizards"][%s] = %s</script>%s', $admin_slug, $wizard_slug, $props, PHP_EOL );
 	}
 
 }
