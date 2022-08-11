@@ -30,6 +30,9 @@ window['example']['cards'][0] === {
 }
 ```
 
+### Note
+The `cards` property is an array of objects, while the `wizards` property is an object of objects, with the keys being the slugs of the registered wizards: if a wizard's slug is `example-wizard-1` for the `example` admin page, the properties for that wizard will be available at `window['example']['wizards']['example_wizard_1']` (notice that dashes are converted to underscores).
+
 ## AJAX
 
 If the `ajax_action` property is defined for a Card or Wizard, then the configuration payload will include an `ajax` property with `nonce` and `url` properties.
