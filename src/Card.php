@@ -21,7 +21,7 @@ abstract class Card {
 	 *
 	 * @return array
 	 */
-	abstract public function props(): array;
+	abstract public function props();
 
 	/**
 	 * Construct.

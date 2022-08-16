@@ -21,7 +21,7 @@ abstract class Wizard {
 	 *
 	 * @return array
 	 */
-	abstract public function props(): array;
+	abstract public function props();
 
 	/**
 	 * AJAX action for finishing wizard.
