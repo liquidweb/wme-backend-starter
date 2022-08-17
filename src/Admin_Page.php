@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Tribe\WmeBackendStarter;
 
@@ -99,7 +99,7 @@ abstract class Admin_Page {
 	 *
 	 * @return void
 	 */
-	public function action__admin_print_footer_scripts(): void {
+	public function action__admin_print_footer_scripts() {
 		printf( '<script>window[%1$s] = window[%1$s] || {"cards":[],"wizards":{}}</script>%2$s', json_encode( str_replace( '-', '_', ( string ) $this->menu_slug ) ), PHP_EOL );
 		do_action( sprintf( '%s/print_scripts', $this->menu_slug ) );
 	}

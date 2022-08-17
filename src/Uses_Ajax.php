@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Tribe\WmeBackendStarter;
 
@@ -26,7 +26,7 @@ trait Uses_Ajax {
 
 		$hook = $this->admin_page_slug . '/' . $this->ajax_action;
 
-		add_action( $hook, static function ( $requested_sub_action ) use ( $registered_sub_action, $callback ): void {
+		add_action( $hook, static function ( $requested_sub_action ) use ( $registered_sub_action, $callback ) {
 			if ( $registered_sub_action !== $requested_sub_action ) {
 				return;
 			}
@@ -65,7 +65,7 @@ trait Uses_Ajax {
 	 *
 	 * @return bool
 	 */
-	protected function supports_ajax(): bool {
+	protected function supports_ajax() {
 		return ! empty( $this->admin_page_slug ) && ! empty( $this->ajax_action );
 	}
 
@@ -76,7 +76,7 @@ trait Uses_Ajax {
 	 *
 	 * @return bool
 	 */
-	protected function maybe_register_ajax_action(): bool {
+	protected function maybe_register_ajax_action() {
 		if ( ! $this->supports_ajax() ) {
 			return false;
 		}
@@ -92,7 +92,7 @@ trait Uses_Ajax {
 	 *
 	 * @return array
 	 */
-	protected function ajax_props(): array {
+	protected function ajax_props() {
 		return [
 			'url'    => add_query_arg( 'action', $this->ajax_action, admin_url( 'admin-ajax.php' ) ),
 			'nonce'  => wp_create_nonce( $this->ajax_action ),
