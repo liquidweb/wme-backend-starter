@@ -45,8 +45,8 @@ trait Uses_Ajax {
 	public function action__wp_ajax() {
 		$sub_action = '';
 
-		if ( ! empty( $_GET['sub_action'] ) ) {
-			$sub_action = $_GET['sub_action'];
+		if ( ! empty( $_REQUEST['sub_action'] ) ) {
+			$sub_action = $_REQUEST['sub_action'];
 		}
 
 		if ( empty( $sub_action ) || empty( $_REQUEST['_wpnonce'] ) ) {
