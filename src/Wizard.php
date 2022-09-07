@@ -68,10 +68,6 @@ abstract class Wizard {
 			'slug' => $this->wizard_slug,
 		];
 
-		if ( empty( $props ) ) {
-			return;
-		}
-
 		if ( $this->supports_ajax() ) {
 			$default_props['ajax'] = $this->ajax_props();
 		}

@@ -57,10 +57,6 @@ abstract class Card {
 			'slug' => $this->card_slug,
 		];
 
-		if ( empty( $props ) ) {
-			return;
-		}
-
 		if ( $this->supports_ajax() ) {
 			$default_props['ajax'] = $this->ajax_props();
 		}
